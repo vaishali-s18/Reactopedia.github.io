@@ -1,7 +1,12 @@
-export default function Header() {
+import React from 'react';
+
+const Header = () => {
   return (
-    <header>
-      <h1>My React App</h1>
+    <header className="bg-primary text-white text-center py-4">
+      <h1>Welcome to Reactopedia</h1>
+      <p>Your mini encyclopedia for web technologies</p>
     </header>
-  )
-}
+  );
+};
+
+export default Header;
