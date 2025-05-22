@@ -1,22 +1,22 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import articles from '../data/articles';
+ import { useParams } from 'react-router-dom';
+import { sampleArticles } from '../data/sampleData';
 
-const ArticlePage = () => {
+export default function ArticlePage() {
   const { id } = useParams();
-  const article = articles.find(article => article.id === Number(id));
+  const article = sampleArticles.find(a => a.id === parseInt(id));
 
-
-  if (!article) {
-    return <h2>Article not found.</h2>;
-  }
+  if (!article) return <div>Article not found</div>;
 
   return (
-    <div>
-      <h2>{article.title}</h2>
-      <p>{article.content}</p>
+    <div className="container mx-auto mt-8">
+      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow">
+        <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+        <div className="prose max-w-none">
+          {article.content.split('\n').map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+      </div>
     </div>
   );
-};
-
-export default ArticlePage;
+}

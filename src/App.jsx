@@ -1,31 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  // Single import
-import NavigationBar from './components/Navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Footer from './components/Footer';
-
-// Import pages
 import Home from './pages/Home';
-import About from './pages/About';
-import ArticlePage from './pages/ArticlePage';  // Ensure this file exists
-import NewArticle from './pages/NewArticle';    // Ensure this file exists
+import ArticlePage from './pages/ArticlePage';
+import EditPage from './pages/EditPage';
 
-const App = () => {
+export default function App() {
   return (
-    <Router>
-      <NavigationBar />
+    <BrowserRouter>
       <Header />
-      <main className="container my-4">
+      <main className="min-h-screen bg-gray-50">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/new" element={<NewArticle />} />
+          <Route path="/edit/:id" element={<EditPage />} />
         </Routes>
       </main>
-      <Footer />
-    </Router>
+    </BrowserRouter>
   );
-};
-
-export default App;
+}

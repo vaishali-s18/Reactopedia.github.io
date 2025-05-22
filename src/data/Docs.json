@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Getting Started",
+    "content": "Welcome to the documentation. Start here..."
+  },
+  {
+    "id": 2,
+    "title": "Advanced Usage",
+    "content": "Learn advanced features here..."
+  }
+]

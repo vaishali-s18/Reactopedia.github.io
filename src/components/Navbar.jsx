@@ -1,40 +1,19 @@
-import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from "react-router-dom";
+import { FiMoon, FiSun } from "react-icons/fi";
+import { useTheme } from "../hooks/useTheme";
 
-const NavigationBar = () => {
+export default function Navbar() {
+  const { isDark, toggleTheme } = useTheme();
+  
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <LinkContainer to="/">
-          <Navbar.Brand>Reactopedia</Navbar.Brand>
-        </LinkContainer>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <LinkContainer to="/article/html">
-              <Nav.Link>HTML</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/article/css">
-              <Nav.Link>CSS</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/article/javascript">
-              <Nav.Link>JavaScript</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/article/react">
-              <Nav.Link>React</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/about">
-              <Nav.Link>About</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/new">
-              <Nav.Link>New Article</Nav.Link>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <nav className="bg-white dark:bg-gray-800 p-4 shadow-lg">
+      <div className="container mx-auto flex justify-between">
+        <Link to="/" className="text-2xl font-bold">Reactopedia</Link>
+        <button onClick={toggleTheme}>
+          {isDark ? <FiSun /> : <FiMoon />}
+        </button>
+      </div>
+    </nav>
   );
-};
-
-export default NavigationBar;
+  
+}
