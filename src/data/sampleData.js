@@ -1,39 +1,23 @@
 export const sampleArticles = [
   {
     id: 1,
-    title: "React (JavaScript library)",
-    content: "React is a free and open-source front-end JavaScript library for building user interfaces based on components...",
-    lastEdited: "2023-05-15"
+    title: "React Hooks Guide",
+    content: "Learn how to use useState, useEffect, and other hooks to manage state and side effects in functional components...",
+    lastEdited: "2023-08-15",
+    categories: ["Hooks", "Fundamentals"]
   },
   {
     id: 2,
-    title: "Wikipedia",
-    content: "Wikipedia is a free online encyclopedia, created and edited by volunteers around the world...",
-    lastEdited: "2023-06-20"
+    title: "Performance Optimization",
+    content: "Techniques like memoization, useCallback, and React.memo can significantly improve your app's performance...",
+    lastEdited: "2023-08-10",
+    categories: ["Performance", "Advanced"]
   },
   {
-  id: 3,
-    title: "HTML",
-    content: "HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation (CSS) or functionality/behavior ",
-    lastEdited: "2023-06-25"
-  },
-{
-    id: 4,
-    title: "CSS",
-    content: "CSS (Cascading Style Sheets) is a style sheet language used for describing the presentation of a document written in HTML or XML...",
-    lastEdited: "2023-07-10"
-},
-{
-    id: 5,
-    title: "JavaScript",
-    content: "JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript specification...",
-    lastEdited: "2023-08-01"
-},
-{
-    id: 6,
-    title: "Node.js",
-    content: "Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside a web browser...",
-    lastEdited: "2023-08-15"
-},
-
+    id: 3,
+    title: "Context API Deep Dive",
+    content: "How to use React's Context API to manage global state without prop drilling...",
+    lastEdited: "2023-08-05",
+    categories: ["State Management", "Intermediate"]
+  }
 ];

@@ -1,14 +1,22 @@
 import { Link } from 'react-router-dom';
-import { FaWikipediaW } from 'react-icons/fa';
+import { FaReact } from 'react-icons/fa';
 
 export default function Header() {
   return (
-    <header className="bg-blue shadow py-4">
-      <div className="container mx-auto flex items-center">
+    <header className="bg-gradient-to-r from-blue-500 to-cyan-400 shadow py-4">
+      <div className="container mx-auto flex items-center px-4">
         <Link to="/" className="flex items-center">
-          <FaWikipediaW className="text-4xl text-gray-700 mr-2" />
-          <h1 className="text-2xl font-bold">Reactopedia</h1>
+          <FaReact className="text-4xl text-white mr-3 animate-spin-slow" />
+          <div>
+            <h1 className="text-2xl font-bold text-white">Reactopedia</h1>
+            <p className="text-xs text-blue-100">The React Developer's Encyclopedia</p>
+          </div>
         </Link>
+        <nav className="ml-auto flex space-x-4">
+          <Link to="/docs" className="text-white hover:text-blue-100 font-medium">Docs</Link>
+          <Link to="/tutorials" className="text-white hover:text-blue-100 font-medium">Tutorials</Link>
+          <Link to="/hooks" className="text-white hover:text-blue-100 font-medium">Hooks</Link>
+        </nav>
       </div>
     </header>
   );

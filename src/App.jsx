@@ -1,20 +1,23 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import ArticlePage from './pages/ArticlePage';
-import EditPage from './pages/EditPage';
+import Article from './pages/ArticlePage';
+import Category from './pages/CategoryPage';
+import Edit from './pages/EditPage';  // Fixed the typo in import path
 
-export default function App() {
+import './App.css';
+
+function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <main className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/article/:id" element={<ArticlePage />} />
-          <Route path="/edit/:id" element={<EditPage />} />
-        </Routes>
-      </main>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/article" element={<Article />} />
+        <Route path="/category" element={<Category />} />
+        <Route path="/edit" element={<Edit />} />
+       
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
