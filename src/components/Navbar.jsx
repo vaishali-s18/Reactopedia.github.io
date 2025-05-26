@@ -1,19 +1,40 @@
-import { Link } from "react-router-dom";
-import { FiMoon, FiSun } from "react-icons/fi";
-import { useTheme } from "../hooks/useTheme";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
+import { ThemeContext } from "../context/ThemeContext";
+import "./Navbar.css";
 
-export default function Navbar() {
-  const { isDark, toggleTheme } = useTheme();
-  
+const Navbar = () => {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+
   return (
-    <nav className="bg-white dark:bg-gray-800 p-4 shadow-lg">
-      <div className="container mx-auto flex justify-between">
-        <Link to="/" className="text-2xl font-bold">Reactopedia</Link>
-        <button onClick={toggleTheme}>
-          {isDark ? <FiSun /> : <FiMoon />}
+    <nav className={`navbar ${isDarkMode ? "dark" : "light"}`}>
+      <div className="navbar-container">
+        <h1 className="navbar-logo">Reactopedia</h1>
+
+        <ul className="nav-menu">
+          <li className="nav-item">
+            <NavLink to="/" className={({ isActive }) => isActive ? "nav-links active" : "nav-links"}>
+              Home
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/tutorials" className={({ isActive }) => isActive ? "nav-links active" : "nav-links"}>
+              Tutorials
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/about" className={({ isActive }) => isActive ? "nav-links active" : "nav-links"}>
+              About
+            </NavLink>
+          </li>
+        </ul>
+
+        <button onClick={toggleTheme} className="theme-toggle-btn">
+          {isDarkMode ? "☀️ Light" : "🌙 Dark"}
         </button>
       </div>
     </nav>
   );
-  
-}
+};
+
+export default Navbar;

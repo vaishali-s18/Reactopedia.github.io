@@ -3,20 +3,22 @@ import Search from '../components/Search';
 import { sampleArticles } from '../data/sampleData';
 import { FaReact, FaLightbulb, FaBookOpen } from 'react-icons/fa';
 import CodeSnippet from '../components/CodeSnippet';
+import { Link } from 'react-router-dom';
+import './Home.css'; // Import the CSS file
 
 export default function Home() {
   const [featuredArticles, setFeaturedArticles] = useState(sampleArticles.slice(0, 3));
-  const [loading, setLoading] = useState(false); // Changed since we're using sample data
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
 
   // Filter articles based on active tab
-  const filteredArticles = activeTab === 'all' 
-    ? featuredArticles 
-    : featuredArticles.filter(article => 
-        article.categories?.includes(activeTab)
-      );
+  const filteredArticles = activeTab === 'all'
+    ? featuredArticles
+    : featuredArticles.filter(article =>
+      article.categories?.includes(activeTab)
+    );
 
-  // Mock API fetch simulation (remove if using real API)
+  // Mock API fetch simulation
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
@@ -26,104 +28,101 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto mt-4 px-4">
-      <div className="max-w-4xl mx-auto">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg shadow mb-8 border border-blue-100">
+    <div className="home-container">
+      {/* Hero Section - Now using CSS classes */}
+      <section className="hero">
+        <div className="hero-content">
           <div className="flex items-center mb-4">
-            <FaReact className="text-4xl text-blue-500 mr-3 animate-spin-slow" />
+            <FaReact className="hero-icon" />
             <div>
-              <h1 className="text-3xl font-bold text-gray-800">Reactopedia</h1>
-              <p className="text-blue-600">The React Developer's Encyclopedia</p>
+              <h1>Reactopedia</h1>
+              <p className="hero-subtitle">The React Developer's Encyclopedia</p>
             </div>
           </div>
           <Search articles={sampleArticles} />
         </div>
+      </section>
 
-        {/* Featured Articles */}
-        <div className="bg-white p-6 rounded-lg shadow">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold flex items-center">
-              <FaBookOpen className="mr-2 text-blue-500" />
-              Featured Topics
-            </h2>
-            <div className="flex space-x-2">
-              <button 
-                onClick={() => setActiveTab('all')}
-                className={`px-3 py-1 rounded-full text-sm ${activeTab === 'all' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'}`}
-              >
-                All
-              </button>
-              <button 
-                onClick={() => setActiveTab('Hooks')}
-                className={`px-3 py-1 rounded-full text-sm ${activeTab === 'Hooks' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'}`}
-              >
-                Hooks
-              </button>
-              <button 
-                onClick={() => setActiveTab('Performance')}
-                className={`px-3 py-1 rounded-full text-sm ${activeTab === 'Performance' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'}`}
-              >
-                Performance
-              </button>
-            </div>
+      {/* Featured Articles */}
+      <div className="content-section">
+        <div className="section-header">
+          <h2 className="section-title">
+            <FaBookOpen className="mr-2" />
+            Featured Topics
+          </h2>
+          <div className="tab-buttons">
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setActiveTab('Hooks')}
+              className={`tab-button ${activeTab === 'Hooks' ? 'active' : ''}`}
+            >
+              Hooks
+            </button>
+            <button
+              onClick={() => setActiveTab('Performance')}
+              className={`tab-button ${activeTab === 'Performance' ? 'active' : ''}`}
+            >
+              Performance
+            </button>
           </div>
-          
-          {loading ? (
-            <div className="flex justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-          ) : (
-            <div className="grid gap-4">
-              {filteredArticles.map(article => (
-                <div key={article.id} className="group border rounded-lg p-4 hover:shadow-md transition">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0 w-16 h-16 bg-blue-50 rounded-lg flex items-center justify-center">
-                      <FaReact className="text-blue-400 text-xl" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition">
-                        {article.title}
-                      </h3>
-                      <p className="text-gray-600 mt-1 line-clamp-2">
-                        {article.content}
-                      </p>
-                      <div className="flex items-center mt-3">
-                        {article.categories?.map(cat => (
-                          <span key={cat} className="mr-2 px-2 py-1 bg-gray-100 rounded-full text-xs">
-                            {cat}
-                          </span>
-                        ))}
-                        <span className="text-xs text-gray-500 ml-auto">
-                          Updated {article.lastEdited}
+        </div>
+
+        {loading ? (
+          <div className="loading-spinner"></div>
+        ) : (
+          <div className="articles-grid">
+            {filteredArticles.map(article => (
+              <Link 
+                to={`/article/${article.slug}`} 
+                key={article.id} 
+                className="article-card"
+              >
+                <div className="article-content">
+                  <div className="article-icon">
+                    <FaReact />
+                  </div>
+                  <div>
+                    <h3>{article.title}</h3>
+                    <p className="article-excerpt">{article.content}</p>
+                    <div className="article-meta">
+                      {article.categories?.map(cat => (
+                        <span key={cat} className="category-tag">
+                          {cat}
                         </span>
-                      </div>
+                      ))}
+                      <span className="last-updated">
+                        Updated {article.lastEdited}
+                      </span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* React Tip with Code Example */}
-        <div className="mt-8 bg-white p-6 rounded-lg shadow">
-          <div className="flex items-center mb-4">
-            <FaLightbulb className="text-2xl text-yellow-500 mr-2" />
-            <h2 className="text-2xl font-bold">React Tip of the Day</h2>
+              </Link>
+            ))}
           </div>
-          <p className="text-gray-700 mb-4">
-            The virtual DOM allows React to optimize rendering by comparing the new virtual DOM 
-            with a pre-update version (diffing) and then making only the necessary updates to 
-            the real DOM.
-          </p>
-          
-          <CodeSnippet 
-            language="jsx"
-            code={`function Example() {
+        )}
+      </div>
+
+      {/* React Tip with Code Example */}
+      <div className="content-section tip-section">
+        <div className="section-header">
+          <FaLightbulb className="tip-icon" />
+          <h2 className="section-title">React Tip of the Day</h2>
+        </div>
+        <p className="tip-content">
+          The virtual DOM allows React to optimize rendering by comparing the new virtual DOM
+          with a pre-update version (diffing) and then making only the necessary updates to
+          the real DOM.
+        </p>
+        <CodeSnippet
+          language="jsx"
+          code={`function Example() {
   const [count, setCount] = useState(0);
 
-  // This effect runs after every render
   useEffect(() => {
     document.title = \`You clicked \${count} times\`;
   });
@@ -137,8 +136,7 @@ export default function Home() {
     </div>
   );
 }`}
-          />
-        </div>
+        />
       </div>
     </div>
   );

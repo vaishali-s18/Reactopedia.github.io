@@ -1,0 +1,186 @@
+/* Main container */
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.hero-icon {
+  font-size: 2.5rem;
+  color: #61dafb;
+  margin-right: 1rem;
+  animation: spin-slow 10s linear infinite;
+}
+
+/* Content sections */
+.content-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Articles grid */
+.articles-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.article-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.article-card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.article-content {
+  display: flex;
+  gap: 1rem;
+}
+
+.article-icon {
+  background: #ebf8ff;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4299e1;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.article-excerpt {
+  color: #4a5568;
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.category-tag {
+  background: #edf2f7;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.last-updated {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-left: auto;
+}
+
+/* Tab buttons */
+.tab-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  background: #edf2f7;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-button.active {
+  background: #bee3f8;
+  color: #3182ce;
+}
+
+/* Tip section */
+.tip-section {
+  background: #fffaf0;
+}
+
+.tip-icon {
+  color: #ecc94b;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.tip-content {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+/* Loading spinner */
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(66, 153, 225, 0.3);
+  border-radius: 50%;
+  border-top-color: #4299e1;
+  animation: spin 1s ease-in-out infinite;
+  margin: 2rem auto;
+}
+
+/* Animations */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

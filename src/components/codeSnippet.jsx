@@ -2,6 +2,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { FaCopy } from 'react-icons/fa';
 
+
 export default function CodeSnippet({ language, code }) {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(code);
