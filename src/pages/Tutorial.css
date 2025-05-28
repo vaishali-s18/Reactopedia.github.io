@@ -1,0 +1,137 @@
+/* Tutorial Page Styles */
+.tutorial-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--bg-color, #ffffff);
+  color: var(--text-color, #1f2937);
+}
+
+.tutorial-header {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.filter-bar {
+  background-color: var(--card-bg, #f9fafb);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.filter-bar input,
+.filter-bar select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #ccc);
+  background-color: var(--input-bg, #ffffff);
+  color: var(--text-color, #1f2937);
+}
+
+.tutorial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.tutorial-card {
+  background-color: var(--card-bg, #f9fafb);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.tutorial-card:hover {
+  transform: scale(1.02);
+}
+
+.tutorial-card-content {
+  padding: 1.5rem;
+}
+
+.tutorial-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-color, #1f2937);
+}
+
+.tutorial-level {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.level-beginner {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.level-intermediate {
+  background-color: #fef9c3;
+  color: #92400e;
+}
+
+.level-expert {
+  background-color: #fecaca;
+  color: #991b1b;
+}
+
+.tutorial-meta {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--meta-color, #6b7280);
+}
+
+.progress-container {
+  margin-top: 1rem;
+}
+
+.progress-bar-bg {
+  background-color: var(--progress-bg, #e5e7eb);
+  height: 8px;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.progress-complete {
+  background-color: #22c55e;
+}
+
+.progress-incomplete {
+  background-color: #3b82f6;
+}
+
+.tutorial-button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.tutorial-button:hover {
+  background-color: #2563eb;
+}

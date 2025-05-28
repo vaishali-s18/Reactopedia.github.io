@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className={`navbar ${isDarkMode ? "dark" : "light"}`}>
       <div className="navbar-container">
         <h1 className="navbar-logo">Reactopedia</h1>
-
+        
         <ul className="nav-menu">
           <li className="nav-item">
             <NavLink to="/" className={({ isActive }) => isActive ? "nav-links active" : "nav-links"}>
