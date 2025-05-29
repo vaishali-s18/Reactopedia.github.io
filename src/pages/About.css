@@ -1,33 +1,81 @@
+/* ========================
+   Theme Variables
+======================== */
 .about-container {
-  padding: 2rem;
-  background-color: var(--bg-color, #ffffff);
-  color: var(--text-color, #1f2937);
-  transition: background-color 0.3s, color 0.3s;
+  --primary-bg: #ffffff;
+  --secondary-bg: #f9fafb;
+  --primary-text: #1f2937;
+  --secondary-text: #4b5563;
+  --accent-color: #6366f1;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+  --transition: all 0.3s ease;
 }
 
 .about-container.dark {
-  --bg-color: #111827;
-  --text-color: #f3f4f6;
+  --primary-bg: #1f2937;
+  --secondary-bg: #111827;
+  --primary-text: #f9fafb;
+  --secondary-text: #d1d5db;
+  --accent-color: #8b5cf6;
+  --card-bg: #1e293b;
+  --border-color: #374151;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================
+   Container & Typography
+======================== */
+.about-container {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  padding: 2rem;
+  transition: var(--transition);
 }
 
 .about-inner {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .about-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 2rem;
   text-align: center;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
 }
 
+/* ========================
+   Hero / Tagline
+======================== */
+.about-hero .tagline {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.highlight {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+/* ========================
+   Section Layouts
+======================== */
 .about-section {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  transition: var(--transition);
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
 }
 
 .about-section.reverse {
@@ -35,40 +83,168 @@
 }
 
 .about-image {
-  flex: 1 1 40%;
+  flex: 1;
+  min-width: 250px;
 }
 
 .about-image img {
   width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+  object-fit: cover;
 }
 
 .about-text {
-  flex: 1 1 55%;
+  flex: 2;
 }
 
 .about-text h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
-  color: var(--text-color, #1f2937);
 }
 
 .about-text p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-color, #374151);
+  font-size: 1.1rem;
+  color: var(--secondary-text);
 }
 
-.contact {
+/* ========================
+   Stats
+======================== */
+.stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.stat-item {
   text-align: center;
 }
 
-.contact a {
-  color: #3b82f6;
-  text-decoration: none;
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent-color);
 }
 
-.contact a:hover {
-  text-decoration: underline;
+.stat-label {
+  display: block;
+  color: var(--secondary-text);
+}
+
+/* ========================
+   Mission List
+======================== */
+.mission-list {
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+.mission-list li {
+  margin-bottom: 0.75rem;
+  color: var(--secondary-text);
+  font-size: 1rem;
+}
+
+/* ========================
+   Team Section
+======================== */
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.team-card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  width: 250px;
+  transition: var(--transition);
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.team-card h3 {
+  font-size: 1.3rem;
+  color: var(--accent-color);
+}
+
+.team-card p {
+  color: var(--secondary-text);
+}
+
+/* ========================
+   FAQ Section
+======================== */
+.faq-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+}
+
+.faq-item p {
+  color: var(--secondary-text);
+}
+
+/* ========================
+   Tech Stack Section
+======================== */
+.tech-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.tech-icons img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.tech-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* ========================
+   Contact Section
+======================== */
+.contact-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.contact-link:hover {
+  color: var(--primary-text);
+}
+
+.contact-note {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--secondary-text);
+  font-size: 1rem;
 }

@@ -1,0 +1,55 @@
+.article-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.article-title {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.article-meta {
+  color: gray;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.article-tags .tag {
+  display: inline-block;
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.article-body {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+.article-editor {
+  width: 100%;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.article-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.edit-button, .save-button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.back-link {
+  margin-left: auto;
+  text-decoration: none;
+  color: #007bff;
+}

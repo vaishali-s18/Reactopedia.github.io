@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { ThemeProvider, ThemeContext } from "./context/ThemeContext";
 import { UserProvider } from "./context/userContext";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Navbar from './components/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import ArticlePage from './pages/ArticlePage.jsx';
@@ -31,7 +32,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/articles/:id" element={<ArticlePage />} />
-          <Route path="/articles/:id/detail" element={<ArticleDetail />} />
+          {/* ✅ Updated route to match slugs used in Home.jsx */}
+          <Route path="/article/:slug" element={<ArticleDetail />} />
           <Route path="/articles/:id/edit" element={<EditPage />} />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/tutorials" element={<Tutorial />} />
