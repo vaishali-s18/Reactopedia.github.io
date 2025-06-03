@@ -39,25 +39,26 @@ export default function Search({ articles }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSelect = (article) => {
-    navigate(`/article/${article.id}`);
-    setQuery('');
-    setIsOpen(false);
-  };
-
+  // filepath: c:\Users\ZA\my-react-app\src\components\Search.jsx
+const handleSelect = (article) => {
+  navigate(`/article/${article.slug}`);
+  setQuery('');
+  setIsOpen(false);
+};
   return (
     <div className="relative" ref={searchRef}>
       <input
-        type="text"
-        value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          setIsOpen(true);
-        }}
-        onFocus={() => setIsOpen(true)}
-        placeholder="Search Reactopedia..."
-        className="w-full p-3 border rounded-lg"
-      />
+  type="text"
+  value={query}
+  onChange={(e) => {
+    setQuery(e.target.value);
+    setIsOpen(true);
+  }}
+  onFocus={() => setIsOpen(true)}
+  placeholder="Search Reactopedia..."
+  className="w-full max-w-xl px-6 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg transition duration-200 text-xl bg-white placeholder-gray-400"
+  style={{ fontFamily: "'Playfair Display', serif" }}
+/>
       
       {isOpen && debouncedQuery && (
         <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg">

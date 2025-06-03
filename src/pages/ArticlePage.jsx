@@ -1,13 +1,20 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
-
-import { FaArrowLeft, FaEdit } from 'react-icons/fa';
-import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
 
 export default function ArticlePage({ articles }) {
-  const { slug } = useParams();
-  const navigate = useNavigate();
-const article = articles.find(a => a.slug === slug);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const { slug, id } = useParams();
+
+  // Debugging
+  console.log("slug:", slug);
+  console.log("id:", id);
+  console.log("articles:", articles);
+
+  let article;
+  if (slug) {
+    article = articles.find(a => a.slug === slug);
+  } else if (id) {
+    article = articles.find(a => String(a.id) === String(id));
+  }
 
   if (!article) {
     return (
@@ -20,21 +27,12 @@ const article = articles.find(a => a.slug === slug);
     );
   }
 
-  // Handle Edit button click
-  const handleEditClick = () => {
-    setShowConfirm(true);
-  };
-
-  // Confirm navigation to edit page
-  const confirmEdit = () => {
-    setShowConfirm(false);
-    navigate(`/edit/${article.slug}`);
-  };
-
-  // Cancel navigation
-  const cancelEdit = () => {
-    setShowConfirm(false);
-  };
+  // Limit content to 200 words
+  const contentWords = article.content.split(' ');
+  const limitedContent =
+    contentWords.length > 200
+      ? contentWords.slice(0, 200).join(' ') + '...'
+      : article.content;
 
   return (
     <div className="container mx-auto px-4 mt-6 max-w-4xl">
@@ -44,12 +42,6 @@ const article = articles.find(a => a.slug === slug);
 
       <div className="flex items-center justify-between mb-2">
         <h1 className="text-3xl font-bold">{article.title}</h1>
-        <button
-          onClick={handleEditClick}
-          className="flex items-center bg-yellow-400 hover:bg-yellow-500 text-white font-semibold px-3 py-1 rounded transition"
-        >
-          <FaEdit className="mr-1" /> Edit Article
-        </button>
       </div>
 
       <p className="text-gray-500 mb-4">Last Edited: {article.lastEdited}</p>
@@ -62,30 +54,7 @@ const article = articles.find(a => a.slug === slug);
         ))}
       </div>
 
-      <p className="text-lg">{article.content}</p>
-
-      {/* Confirmation Dialog */}
-      {showConfirm && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow max-w-sm text-center">
-            <p className="mb-4 text-lg">Are you sure you want to edit this article?</p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={confirmEdit}
-                className="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded"
-              >
-                Yes, Edit
-              </button>
-              <button
-                onClick={cancelEdit}
-                className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <p className="text-lg">{limitedContent}</p>
     </div>
   );
 }

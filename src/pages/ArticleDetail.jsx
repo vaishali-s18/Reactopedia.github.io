@@ -1,7 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
-import { sampleArticles } from '../data/sampleData';
 import { useState } from 'react';
-import './ArticleDetail.css'; // Create this for styling
+import { db } from '../firebase'; // <-- import Firestore instance
+import { doc, updateDoc } from 'firebase/firestore';
+import { sampleArticles } from '../data/sampleData';
+import './ArticleDetail.css';
 
 export default function ArticleDetail() {
   const { slug } = useParams();
@@ -11,6 +13,18 @@ export default function ArticleDetail() {
   const [editedContent, setEditedContent] = useState(article?.content || "");
 
   if (!article) return <p>Article not found.</p>;
+
+  // Save to Firestore
+  const handleSave = async () => {
+    try {
+      const articleRef = doc(db, "articles", article.id); // assumes article.id matches Firestore doc id
+      await updateDoc(articleRef, { content: editedContent });
+      setIsEditing(false);
+      alert("Changes saved to Firestore!");
+    } catch (error) {
+      alert("Failed to save changes: " + error.message);
+    }
+  };
 
   return (
     <div className="article-detail-container">
@@ -38,11 +52,7 @@ export default function ArticleDetail() {
           {isEditing ? 'Cancel' : 'Edit'}
         </button>
         {isEditing && (
-          <button onClick={() => {
-            // Here you’d typically send an update request to backend
-            setIsEditing(false);
-            alert("Changes saved locally!");
-          }} className="save-button">
+          <button onClick={handleSave} className="save-button">
             Save
           </button>
         )}
