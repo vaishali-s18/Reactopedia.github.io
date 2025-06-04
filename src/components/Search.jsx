@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from 'fuse.js';
 import { useNavigate } from 'react-router-dom';
+import { FaSearch, FaTimes } from 'react-icons/fa';
 
 export default function Search({ articles }) {
   const [query, setQuery] = useState('');
@@ -39,45 +40,58 @@ export default function Search({ articles }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // filepath: c:\Users\ZA\my-react-app\src\components\Search.jsx
-const handleSelect = (article) => {
-  navigate(`/article/${article.slug}`);
-  setQuery('');
-  setIsOpen(false);
-};
+  const handleSelect = (article) => {
+    navigate(`/article/${article.slug}`);
+    setQuery('');
+    setIsOpen(false);
+  };
+
+  const handleClear = () => {
+    setQuery('');
+    setIsOpen(false);
+  };
+
   return (
-    <div className="relative" ref={searchRef}>
+    <div className="relative search-bar" ref={searchRef}>
+      <FaSearch className="search-icon" />
       <input
-  type="text"
-  value={query}
-  onChange={(e) => {
-    setQuery(e.target.value);
-    setIsOpen(true);
-  }}
-  onFocus={() => setIsOpen(true)}
-  placeholder="Search Reactopedia..."
-  className="w-full max-w-xl px-6 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-lg transition duration-200 text-xl bg-white placeholder-gray-400"
-  style={{ fontFamily: "'Playfair Display', serif" }}
-/>
-      
+        type="text"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setIsOpen(true);
+        }}
+        onFocus={() => setIsOpen(true)}
+        placeholder="Search Reactopedia..."
+        className="search-input"
+        style={{ fontFamily: "'Playfair Display', serif" }}
+        aria-label="Search Reactopedia"
+      />
+      {query && (
+        <button className="clear-btn" onClick={handleClear} aria-label="Clear search">
+          <FaTimes />
+        </button>
+      )}
       {isOpen && debouncedQuery && (
-        <div className="absolute z-10 w-full mt-1 bg-white border rounded-lg shadow-lg">
+        <div className="search-dropdown">
           {results.length > 0 ? (
             results.slice(0, 5).map(article => (
               <div 
                 key={article.id}
-                className="p-3 hover:bg-gray-100 cursor-pointer"
+                className="search-result"
                 onClick={() => handleSelect(article)}
+                tabIndex={0}
+                onKeyDown={e => e.key === 'Enter' && handleSelect(article)}
               >
-                <h3 className="font-bold">{article.title}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {article.content.substring(0, 150)}...
+                <h3 className="result-title">{article.title}</h3>
+                <p className="result-snippet">
+                  {article.content.substring(0, 120)}...
                 </p>
               </div>
             ))
           ) : (
-            <div className="p-3 text-gray-500">
-              No results found for "{debouncedQuery}"
+            <div className="search-no-results">
+              No results found for "<b>{debouncedQuery}</b>"
             </div>
           )}
         </div>

@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import { ThemeProvider, ThemeContext } from "./context/ThemeContext";
-import { UserProvider } from "./context/userContext";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { UserProvider, UserContext } from "./context/userContext";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Footer from './components/Footer.jsx';
 import Auth from './components/Auth';
+import Hooks from './pages/Hooks.jsx';
 import Navbar from './components/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import ArticlePage from './pages/ArticlePage.jsx';
@@ -23,6 +24,12 @@ function AppWrapper() {
   );
 }
 
+// PrivateRoute component
+function PrivateRoute({ children }) {
+  const { user } = useContext(UserContext); // Make sure your userContext provides `user`
+  return user ? children : <Navigate to="/login" />;
+}
+
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
 
@@ -30,17 +37,74 @@ function App() {
     <div className={`min-h-screen ${isDarkMode ? "dark bg-gray-900 text-white" : "bg-white text-black"}`}>
       <Router>
         <Navbar />
-        <Auth /> {/* <-- Add here to show on every page */}
         <Routes>
           <Route path="/login" element={<Auth />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/article/:slug" element={<ArticlePage articles={sampleArticles} />} />
-          <Route path="/articles/:id" element={<ArticlePage articles={sampleArticles} />} />
-          <Route path="/articles/:id/edit" element={<EditPage />} />
-          <Route path="/category/:category" element={<CategoryPage />} />
-          <Route path="/tutorials" element={<Tutorial />} />
-          <Route path="/about" element={<About />} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/article/:slug"
+            element={
+              <PrivateRoute>
+                <ArticlePage articles={sampleArticles} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/articles/:id"
+            element={
+              <PrivateRoute>
+                <ArticlePage articles={sampleArticles} />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/articles/:id/edit"
+            element={
+              <PrivateRoute>
+                <EditPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/category/hooks"
+            element={
+              <PrivateRoute>
+                <Hooks />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/category/:category"
+            element={
+              <PrivateRoute>
+                <CategoryPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tutorials"
+            element={
+              <PrivateRoute>
+                <Tutorial />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <PrivateRoute>
+                <About />
+              </PrivateRoute>
+            }
+          />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
