@@ -1,4 +1,4 @@
-import { FaGithub, FaTwitter, FaReact, FaPhone } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaReact, FaPhoneAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 import { useState } from "react";
@@ -53,9 +53,9 @@ export default function Footer() {
           </form>
         </div>
         <div className="footer-social">
-          <a href="tel:+919876543210" title="Call" aria-label="Phone">
-            <FaPhone />
-          </a>
+  <a href="tel:+919991711718" title="Call" aria-label="Phone">
+    <FaPhoneAlt />
+  </a>
           <a href="https://github.com/vaishali-s18/my-react-app" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <FaGithub />
           </a>
@@ -74,7 +74,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <span>
           © {new Date().getFullYear()} Reactopedia &nbsp;|&nbsp;
-          <a href="tel:+919876543210" className="footer-mail">Contact Us: +91 98765 43210</a>
+          <a href="tel:+919991711718" className="footer-mail">Contact Us: +91 99917 11718</a>
         </span>
         <div className="footer-madeby">
           Made by Vaishali
