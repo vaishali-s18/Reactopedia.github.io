@@ -44,7 +44,9 @@ export default function ArticleDetail() {
           rows={10}
         />
       ) : (
-        <p className="article-body">{editedContent}</p>
+        <div className="article-body">
+          <div dangerouslySetInnerHTML={{ __html: editedContent }} />
+        </div>
       )}
 
       <div className="article-actions">

@@ -25,9 +25,18 @@
 }
 
 .article-body {
+  word-break: break-word;
   font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 1rem 0;
+  line-height: 1.7;
+  padding: 0.5rem 0;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .article-body {
+    font-size: 1rem;
+    padding: 0.5rem 0.2rem;
+  }
 }
 
 .article-editor {
