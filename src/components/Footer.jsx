@@ -53,7 +53,7 @@ export default function Footer() {
           </form>
         </div>
         <div className="footer-social">
-  <a href="tel:+919991711718" title="Call" aria-label="Phone">
+  <a href="tel:+919823422438" title="Call" aria-label="Phone">
     <FaPhoneAlt />
   </a>
           <a href="https://github.com/vaishali-s18/my-react-app" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -74,7 +74,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <span>
           © {new Date().getFullYear()} Reactopedia &nbsp;|&nbsp;
-          <a href="tel:+919991711718" className="footer-mail">Contact Us: +91 98234 22438</a>
+          <a href="tel:+919823422438" className="footer-mail">Contact Us: +91 98234 22438</a>
         </span>
         <div className="footer-madeby">
           Made by Vaishali
