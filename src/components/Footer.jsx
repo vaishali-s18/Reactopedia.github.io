@@ -74,7 +74,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <span>
           © {new Date().getFullYear()} Reactopedia &nbsp;|&nbsp;
-          <a href="tel:+919991711718" className="footer-mail">Contact Us: +91 99917 11718</a>
+          <a href="tel:+919991711718" className="footer-mail">Contact Us: +91 98234 22438</a>
         </span>
         <div className="footer-madeby">
           Made by Vaishali
