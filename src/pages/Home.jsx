@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import Search from '../components/Search';
 import { sampleArticles } from '../data/sampleData';
 import { FaReact, FaLightbulb, FaBookOpen, FaArrowRight } from 'react-icons/fa';
-import CodeSnippet from '../components/CodeSnippet';
+import CodeSnippet from "../components/CodeSnippet.jsx";
+
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../context/ThemeContext';
 import { UserContext } from '../context/userContext';
